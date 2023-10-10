@@ -33,3 +33,19 @@
   display: flex;
   flex-direction: row-reverse;
 }
+
+.dx-header-row
+  > td
+  > .dx-datagrid-text-content:not(.dx-sort-indicator):not(
+    .dx-header-filter-indicator
+  ) {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  color: var(--text-primary-light);
+}
+
+.dx-datagrid-content .dx-datagrid-table .dx-row > td,
+.dx-datagrid-content .dx-datagrid-table .dx-row > tr > td {
+  vertical-align: middle;
+}

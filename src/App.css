@@ -11,6 +11,11 @@
   --alert: #ea1a40;
   --warning: #ffb800;
   --outlines: #41de1a;
+  --bg-secondary: #efeff1;
+  --bg-primray: #f5f5f5;
+  --utilities-success: #27c200;
+  --bg-secondaty-ios: #efeff1;
+  --tertlary-dark: #6c6a7d;
 }
 
 h1 {
