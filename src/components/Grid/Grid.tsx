@@ -36,6 +36,7 @@ function Grid(props: GridProps) {
     <div>
       {/*TODO: treba narpaviti komponente */}
       {/*TODO: namjesti visinu grida jer nemamo paging */}
+      {/* TODO: AKO JE STATUS CLOSED TREBA NAPRAVITI KOMPONENTU KOJA CE SE PRIKAZZATI */}
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
         <div className="grid-header-actions">

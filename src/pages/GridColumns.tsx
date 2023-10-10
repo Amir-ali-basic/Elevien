@@ -103,12 +103,31 @@ export class GridColumns {
       },
       {
         caption: "",
-        dataField: "actions",
+        type: "buttons",
         dataType: "string",
         alignment: "left",
         allowReordering: false,
         allowSorting: false,
         width: "15%",
+        buttons: [
+          {
+            name: "delete",
+            visible: (rowData) => {
+              return rowData.row?.data.status === "applied";
+            },
+            template: `Request Removal`,
+            cssClass: "grid-row-button",
+            onClick: () => console.log("grid button"),
+          },
+          {
+            name: "cancel",
+            visible: (rowData) =>
+              rowData.row?.data.status === "awaiting response", // Show when status is "Awaiting Response"
+            template: `Cancel`,
+            cssClass: "grid-row-button",
+            onClick: () => console.log("grid button"),
+          },
+        ],
       },
     ];
     return this.columns;

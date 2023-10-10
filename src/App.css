@@ -72,3 +72,14 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+.vertical-align-button {
+  vertical-align: middle;
+}
+
+.grid-row-button {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+.grid-row-button:hover {
+  cursor: pointer;
+}
