@@ -117,7 +117,7 @@ export class GridColumns {
             },
             template: `Request Removal`,
             cssClass: "grid-row-button",
-            onClick: () => console.log("grid button"),
+            onClick: this.requestRemovalButtonHandler,
           },
           {
             name: "cancel",
@@ -125,7 +125,7 @@ export class GridColumns {
               rowData.row?.data.status === "awaiting response", // Show when status is "Awaiting Response"
             template: `Cancel`,
             cssClass: "grid-row-button",
-            onClick: () => console.log("grid button"),
+            onClick: this.cancelButtonHandler,
           },
         ],
       },
