@@ -122,7 +122,7 @@ export class GridColumns {
           {
             name: "cancel",
             visible: (rowData) =>
-              rowData.row?.data.status === "awaiting response", // Show when status is "Awaiting Response"
+              rowData.row?.data.status === "awaiting response",
             template: `Cancel`,
             cssClass: "grid-row-button",
             onClick: this.cancelButtonHandler,

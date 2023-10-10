@@ -1,10 +1,11 @@
-import { makeAutoObservable } from "mobx";
+import { computed, makeAutoObservable } from "mobx";
 import { GridColumns } from "../pages/GridColumns";
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
 import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
+import { VisibilityController } from "../viewModels/VisibilityController";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -12,6 +13,7 @@ class CompetitionStore {
   gridDataSource: DataSource;
   gridColumns: GridColumns;
   masterDetails: MasterDetailModel[];
+  applicationModalVisibility: VisibilityController;
 
   constructor() {
     makeAutoObservable(this);
@@ -40,6 +42,7 @@ class CompetitionStore {
         return new MasterDetailModel(application);
       }
     );
+    this.applicationModalVisibility = new VisibilityController();
   }
 
   gridCancelClickHandler() {

@@ -1,39 +1,49 @@
-import React, { Component } from "react";
-import Button from "devextreme-react/button";
+import React from "react";
+
 import "../../assets/button.css";
 
-interface ButtonProps {
-  disabled?: boolean;
+interface CustomButtonProps {
   text: string;
-  onClick?: () => void;
   primary?: boolean;
-  className?: string; // Add a className prop to accept custom classes
+  secondary?: boolean;
+  cancel?: boolean;
+  onClick?: () => void;
+  disabled?: boolean;
+  className?: string;
 }
 
-class CustomButton extends Component<ButtonProps> {
-  render() {
-    const isDisabled =
-      this.props.disabled === undefined ? false : this.props.disabled;
+const CustomButton: React.FC<CustomButtonProps> = ({
+  text,
+  primary,
+  secondary,
+  cancel,
+  onClick,
+  disabled,
+  className,
+}) => {
+  const buttonClass = primary
+    ? "primary-button"
+    : secondary
+    ? "secondary-button"
+    : cancel
+    ? "cancel-button"
+    : "";
 
-    const buttonClassName = this.props.primary
-      ? "primary-button" // Use primary style
-      : "secondary-button"; // Use secondary style
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
 
-    // Concatenate the custom class with DevExtreme classes using dx-class
-    const combinedClassName = `basic-button ${buttonClassName} ${
-      this.props.className || "" // Use the provided className or an empty string
-    }`;
-
-    return (
-      <Button
-        disabled={isDisabled}
-        className={combinedClassName}
-        onClick={this.props.onClick}
-      >
-        {this.props.text}
-      </Button>
-    );
-  }
-}
+  return (
+    <button
+      className={`custom-button ${buttonClass} ${className || ""}`}
+      onClick={handleClick}
+      disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+};
 
 export default CustomButton;
