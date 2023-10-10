@@ -10,6 +10,13 @@ function Competition() {
   const columns = competitionStore.gridColumns.getDefaultColumns();
   const dataSource = competitionStore.gridDataSource;
   const masterGridData = competitionStore.masterDetails;
+  function addNewApplication() {
+    console.log("addNewApplication()");
+  }
+
+  function apply() {
+    console.log("no dta component action");
+  }
   console.log("columns", columns);
   console.log("dataSource", dataSource);
   console.log("masterGridData", masterGridData);
@@ -26,6 +33,8 @@ function Competition() {
         masterGridData={masterGridData}
         title="My Applications"
         filters={Filters}
+        addNewAction={() => addNewApplication()}
+        noDataActionButton={() => apply()}
       ></Grid>
     </div>
   );

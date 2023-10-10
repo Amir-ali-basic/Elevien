@@ -41,3 +41,7 @@
   background-color: var(--primary-color);
   color: var(--text-on-primary);
 }
+
+.secondary-button {
+  background-color: var(--primary-valiant-judge);
+}

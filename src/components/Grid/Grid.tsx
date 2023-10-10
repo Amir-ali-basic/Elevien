@@ -5,6 +5,7 @@ import CustomButton from "../Button/Button";
 import Status from "../Status/Status";
 import { StatusType } from "../../types/StatusType";
 import DataSource from "devextreme/data/data_source";
+import NoDataComponent from "../NoDataComponent/NoDataComponent";
 
 interface GridProps {
   title?: string;
@@ -16,6 +17,8 @@ interface GridProps {
   masterGridComponent?: React.ComponentType<any>;
   filters?: React.ReactNode;
   allowColumnResizing?: boolean;
+  addNewAction?: () => void;
+  noDataActionButton?: () => void;
 }
 
 //multiple buttons can be added
@@ -36,23 +39,27 @@ function Grid(props: GridProps) {
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
         <div className="grid-header-actions">
-          <CustomButton text={props.buttonText} />
+          <CustomButton text={props.buttonText} onClick={props.addNewAction} />
           <Status status={props.status}></Status>
         </div>
       </div>
       <div>{props.filters}</div>
       {renderRequestCount(props.dataSource.totalCount())}
-      <DataGrid
-        className="custom-grid"
-        dataSource={props.dataSource}
-        columns={props.columns}
-        allowColumnResizing={props.allowColumnResizing}
-      >
-        <MasterDetail
-          enabled={props.showMasterDetail}
-          component={props.masterGridComponent}
-        ></MasterDetail>
-      </DataGrid>
+      {props.dataSource.totalCount() !== 0 ? (
+        <DataGrid
+          className="custom-grid"
+          dataSource={props.dataSource}
+          columns={props.columns}
+          allowColumnResizing={props.allowColumnResizing}
+        >
+          <MasterDetail
+            enabled={props.showMasterDetail}
+            component={props.masterGridComponent}
+          ></MasterDetail>
+        </DataGrid>
+      ) : (
+        <NoDataComponent onClick={props.noDataActionButton} />
+      )}
     </div>
   );
 }
