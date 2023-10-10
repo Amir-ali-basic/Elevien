@@ -22,9 +22,11 @@
 
 .master-grid-date-of-birth {
   display: flex;
+  gap: 3px;
 }
 .master-grid-phone-number {
   display: flex;
+  gap: 3px;
 }
 .dx-datagrid-rowsview
   .dx-master-detail-row:not(.dx-datagrid-edit-form)

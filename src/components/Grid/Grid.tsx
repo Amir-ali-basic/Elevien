@@ -27,6 +27,8 @@ function Grid(props: GridProps) {
     return <h3>All request ({count})</h3>;
   };
 
+  console.log("props.masterGridComponent", props.masterGridComponent);
+
   return (
     <div>
       {/*TODO: treba narpaviti komponente */}
