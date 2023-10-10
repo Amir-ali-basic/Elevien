@@ -1,0 +1,18 @@
+.status {
+  background-color: var(--text-on-disabled);
+  width: 90px;
+  height: 42px;
+  border-radius: 4px;
+}
+
+.status .status-content {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+.status .status-content .status-icon {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}

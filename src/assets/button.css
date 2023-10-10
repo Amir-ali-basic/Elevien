@@ -1,0 +1,43 @@
+.dx-button {
+  border-style: none;
+  border-radius: 0px;
+  border-width: 0px;
+}
+
+.dx-button .dx-button-content {
+  padding: 12px 24px 12px 24px;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border: none;
+  outline: none;
+}
+
+.dx-button-mode-contained.dx-state-hover {
+  border: none;
+  background-color: transparent;
+}
+
+.dx-button-mode-contained.dx-state-active {
+  border: none;
+  background-color: transparent;
+}
+
+.dx-button-mode-contained.dx-state-focused {
+  border: none;
+  background-color: transparent;
+}
+
+.dx-button .dx-button-content:hover {
+  padding: 12px 24px 12px 24px;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border: none;
+  outline: none;
+}
+
+.dx-state-hover {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+}

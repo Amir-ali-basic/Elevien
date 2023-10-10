@@ -1,0 +1,35 @@
+.custom-grid {
+  background-color: #f0f0f0;
+}
+.grid-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-header .grid-header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.dx-datagrid-headers {
+  background-color: #eae9ef;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border: 0.5px solid #d6d5dc;
+}
+.dx-datagrid .dx-column-lines > td {
+  border-left: none;
+  border-right: none;
+}
+.dx-datagrid-rowsview {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border: 0.5px solid #d6d5dc;
+}
+
+.master-detail-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
