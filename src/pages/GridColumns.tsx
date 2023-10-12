@@ -1,7 +1,6 @@
 import { IColumnProps } from "devextreme-react/data-grid";
 import { formatDxGridTime } from "../libs/formatting";
 import StatusCell from "../components/StatusCell/StatusCell";
-import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import NameCell from "../components/NameCell/NameCell";
 import { NameCellModel } from "../models/NameCellModel";
