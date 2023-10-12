@@ -52,6 +52,10 @@ class CompetitionStore {
   gridRequestRemovalClickHandler() {
     console.log("gridRequestRemovalClickHandler");
   }
+
+  confirmButtonHandler() {
+    console.log("Value of form", this.application);
+  }
 }
 
 const competitionStore = new CompetitionStore();

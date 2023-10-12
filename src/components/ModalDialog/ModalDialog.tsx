@@ -34,7 +34,12 @@ function ModalDialog(props: ModalDialogProps) {
             {props.showTitle && (
               <div className="modal-header">
                 <h2>{props.title}</h2>
-                <img src={CloseIcon} alt="CloseIcon" onClick={closeModal} />
+                <img
+                  src={CloseIcon}
+                  alt="CloseIcon"
+                  className="modal-dialog-close-icon"
+                  onClick={closeModal}
+                />
               </div>
             )}
             <div className="modal-body">
