@@ -3,6 +3,8 @@ import CountryDropdown from "../CountryDropDown/CountryDropdown";
 import Dropdown from "../DropdownComponent/Dropdown";
 import TextInput from "../TextInput/TextInput";
 import "../../assets/form.css";
+import DatePicker from "../DatePicker/DatePicker";
+import PhoneNumberInput from "../PhoneNumberInput/PhoneNumberInput";
 
 function ApplicationForm() {
   const categories = [
@@ -61,6 +63,7 @@ function ApplicationForm() {
       <div className="row application-form-first-row">
         <div className="application-form-input">
           <TextInput
+            showLabel={true}
             label="First Name"
             disabled={false}
             readOnly={false}
@@ -73,6 +76,7 @@ function ApplicationForm() {
         </div>
         <div className="application-form-input">
           <TextInput
+            showLabel={true}
             label="Last Name"
             disabled={false}
             readOnly={false}
@@ -94,26 +98,70 @@ function ApplicationForm() {
           />
         </div>
       </div>
-      <div className="row">
-        <div>
+      <div className="row application-form-second-row">
+        <div className="application-form-input">
           <Dropdown
-            label="Select Category"
+            label="Program and category"
             value={competitionStore.application.categoryName}
             items={categories}
+            placeholder="Program and category"
             onValueChange={(newValue: string) => {
               competitionStore.application.categoryName = newValue;
             }}
           />
         </div>
-        <div>Date of birth</div>
+        <div className="application-form-date">
+          <DatePicker
+            label="Date of birht"
+            value={competitionStore.application.dateOfBirth}
+            placeholder="Enter date"
+            onDateChange={(newValue: string) => {
+              competitionStore.application.dateOfBirth = newValue;
+            }}
+          />
+        </div>
+      </div>
+      <div className="row application-form-third-row">
+        <div className="application-form-input">
+          <TextInput
+            showLabel={true}
+            label="Club (Optional)"
+            disabled={false}
+            readOnly={false}
+            value={competitionStore.application.club}
+            onValueChange={(newValue: string) => {
+              competitionStore.application.lastName = newValue;
+            }}
+            placeholder="Club"
+          />
+        </div>
+        <div className="application-form-input">
+          <TextInput
+            showLabel={true}
+            label="Team (Optional)"
+            disabled={false}
+            readOnly={false}
+            value={competitionStore.application.teamName}
+            onValueChange={(newValue: string) => {
+              competitionStore.application.lastName = newValue;
+            }}
+            placeholder="Team"
+          />
+        </div>
       </div>
       <div className="row">
-        <div>Club(Optional)</div>
-        <div>Team(Optional)</div>
+        <div className="aplication-form-phone-input">
+          <PhoneNumberInput
+            label="Phone (Optional)"
+            countries={countries}
+            value={competitionStore.application.phone}
+            onValueChange={(newValue) => {
+              competitionStore.application.phone = newValue.fullPhoneNumber;
+            }}
+          />
+        </div>
       </div>
-      <div className="row">
-        <div>Phone(Optional)</div>
-      </div>
+      <div className="line"></div>
     </div>
   );
 }

@@ -34,7 +34,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick();
     }
   };
-
+  //css za disabled
   return (
     <button
       className={`custom-button ${buttonClass} ${className || ""}`}

@@ -63,7 +63,7 @@ h4 {
   font-size: 12px;
   font-weight: bold;
 }
-
+/*TODO: TREBA SREDITI CONTAINER*/
 .container {
   padding-left: 25px;
   padding-right: 25px;
@@ -83,4 +83,10 @@ body {
 }
 .grid-row-button:hover {
   cursor: pointer;
+}
+.input-label {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+  margin-bottom: 6px;
 }

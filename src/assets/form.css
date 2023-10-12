@@ -1,3 +1,11 @@
+/*OVO JE ZA ZATVOR !1*/
+
+.application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 29px;
+}
+
 .row {
   display: flex;
   width: 100%;
@@ -16,4 +24,29 @@
 
 .application-form-country {
   width: 110px;
+}
+
+.application-form-second-row .application-form-date {
+  width: 127px;
+}
+
+.application-form-second-row .application-form-input {
+  max-width: calc(100% - 5px);
+  width: calc(100% - 127px - 10px);
+}
+.application-form-third-row {
+  width: 100%;
+}
+.application-form-third-row .application-form-input {
+  width: calc(50% - 5px);
+}
+
+.aplication-form-phone-input {
+  width: 173px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #d6d5dc;
 }

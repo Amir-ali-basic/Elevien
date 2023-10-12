@@ -51,7 +51,6 @@ function Competition() {
         abort={() => setIsApplicationModalVisible(false)}
         confirm={() => competitionStore.confirmButtonHandler()}
       >
-        {/* Content of your modal */}
         <ApplicationForm />
       </ModalDialog>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import DxSelectBox from "devextreme-react/select-box"; // Replace with the appropriate dropdown component
+import DxSelectBox from "devextreme-react/select-box";
 import { useEffect } from "react";
 import { ValueChangedEvent } from "devextreme/ui/drop_down_box";
 
@@ -8,10 +8,12 @@ interface DropdownProps {
   disabled?: boolean;
   showLabel?: boolean;
   value: string;
-  items: string[];
+  items: string[] | any;
+  placeholder: string;
   onValueChange: (newValue: string) => void;
 }
-
+//komponentu treba fixati da moze da radi sa nizom stringova, i da radi sa bilo kojim modelom, u slucaju da dodje
+//nesto drugo sto nije niz stringova, onda display expresion mora biti obavezan unos
 const Dropdown: React.FC<DropdownProps> = (props) => {
   const [selectedValue, setSelectedValue] = useState(props.value);
 
@@ -27,13 +29,14 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
 
   return (
     <div className="dx-field">
-      <span>{props.label}</span>
+      <span className="input-label">{props.label}</span>
       <DxSelectBox
         disabled={props.disabled}
         value={selectedValue}
         items={props.items}
         onValueChanged={handleValueChange}
         width="100%"
+        placeholder={props.placeholder}
       />
     </div>
   );

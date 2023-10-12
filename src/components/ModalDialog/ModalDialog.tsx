@@ -13,6 +13,7 @@ interface ModalDialogProps {
   abort: () => void;
   confirm: () => void;
 }
+//TODO: buttom style can also be a prop
 
 function ModalDialog(props: ModalDialogProps) {
   const [isVisible, setIsVisible] = useState(props.isVisible);
@@ -55,7 +56,7 @@ function ModalDialog(props: ModalDialogProps) {
             <CustomButton
               text={props.confirmButtonText}
               onClick={props.confirm}
-              secondary={true}
+              primary={true}
             />
           </div>
         </div>
