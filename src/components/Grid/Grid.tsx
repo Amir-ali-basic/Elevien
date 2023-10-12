@@ -25,7 +25,6 @@ interface GridProps {
 function Grid(props: GridProps) {
   const isClosed = props.status === "Closed";
   const renderRequestCount = (count: number) => {
-    console.log("props.dataSource", props.dataSource);
     if (count === 0) {
       return null;
     }
@@ -34,7 +33,6 @@ function Grid(props: GridProps) {
 
   return (
     <div>
-      {/*TODO: treba narpaviti komponente */}
       {/*TODO: namjesti visinu grida jer nemamo paging */}
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
