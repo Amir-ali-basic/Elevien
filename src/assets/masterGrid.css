@@ -1,0 +1,49 @@
+.master-grid {
+  display: flex;
+  width: 100%;
+}
+.master-grid-content {
+  width: calc(65% - 30px);
+  margin-left: calc(20% + 30px);
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.master-grid-line {
+  height: 1px;
+  width: 100%;
+  background-color: #d9d9d9;
+}
+
+.master-grid-additional-info {
+  width: 85%;
+  margin-left: calc(15% + 15px);
+}
+
+.master-grid-date-of-birth {
+  display: flex;
+  gap: 3px;
+}
+.master-grid-phone-number {
+  display: flex;
+  gap: 3px;
+}
+.dx-datagrid-rowsview
+  .dx-master-detail-row:not(.dx-datagrid-edit-form)
+  .dx-master-detail-cell,
+.dx-datagrid-rowsview
+  .dx-master-detail-row:not(.dx-datagrid-edit-form)
+  > .dx-datagrid-group-space {
+  background-color: #ffffff;
+}
+.dx-datagrid-rowsview .dx-master-detail-row .dx-master-detail-cell {
+  border-bottom: none;
+  border-top: none;
+}
+
+.dx-datagrid-rowsview .dx-master-detail-row > .dx-master-detail-cell {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

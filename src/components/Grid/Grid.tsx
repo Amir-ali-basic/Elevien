@@ -4,22 +4,25 @@ import "./grid.css";
 import CustomButton from "../Button/Button";
 import Status from "../Status/Status";
 import { StatusType } from "../../types/StatusType";
+import DataSource from "devextreme/data/data_source";
+import NoDataComponent from "../NoDataComponent/NoDataComponent";
 
 interface GridProps {
   title?: string;
   buttonText: string;
   status: StatusType;
-  requestNumber?: number;
-  dataSource: any;
+  dataSource: DataSource;
   columns: any;
   showMasterDetail?: boolean;
   masterGridComponent?: React.ComponentType<any>;
   filters?: React.ReactNode;
+  allowColumnResizing?: boolean;
+  addNewAction?: () => void;
+  noDataActionButton?: () => void;
 }
 
 //multiple buttons can be added
 function Grid(props: GridProps) {
-  // Funkcija koja prikazuje ili sakriva h3 na osnovu broja u dataSource
   const renderRequestCount = (count: number) => {
     if (count === 0) {
       return null;
@@ -27,29 +30,37 @@ function Grid(props: GridProps) {
     return <h3>All request ({count})</h3>;
   };
 
+  console.log("props.masterGridComponent", props.masterGridComponent);
+
   return (
     <div>
-      {/* treba narpaviti komponente */}
+      {/*TODO: treba narpaviti komponente */}
+      {/*TODO: namjesti visinu grida jer nemamo paging */}
+      {/* TODO: AKO JE STATUS CLOSED TREBA NAPRAVITI KOMPONENTU KOJA CE SE PRIKAZZATI */}
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
         <div className="grid-header-actions">
-          <CustomButton text={props.buttonText} />
+          <CustomButton text={props.buttonText} onClick={props.addNewAction} />
           <Status status={props.status}></Status>
         </div>
       </div>
       <div>{props.filters}</div>
-      {renderRequestCount(props.dataSource.length)}
-      <DataGrid
-        className="custom-grid"
-        dataSource={props.dataSource}
-        columns={props.columns}
-        showBorders={false}
-      >
-        <MasterDetail
-          enabled={props.showMasterDetail}
-          component={props.masterGridComponent}
-        ></MasterDetail>
-      </DataGrid>
+      {renderRequestCount(props.dataSource.totalCount())}
+      {props.dataSource.totalCount() !== 0 ? (
+        <DataGrid
+          className="custom-grid"
+          dataSource={props.dataSource}
+          columns={props.columns}
+          allowColumnResizing={props.allowColumnResizing}
+        >
+          <MasterDetail
+            enabled={props.showMasterDetail}
+            component={props.masterGridComponent}
+          ></MasterDetail>
+        </DataGrid>
+      ) : (
+        <NoDataComponent onClick={props.noDataActionButton} />
+      )}
     </div>
   );
 }

@@ -1,0 +1,27 @@
+.status-cell span {
+  padding: 1px 6px 1px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 14px;
+}
+
+.canceled {
+  background-color: var(--bg-secondary);
+  color: var(--tertlary-dark);
+}
+
+.applied {
+  background-color: var(--utilities-success);
+  color: var(--text-on-primary);
+}
+
+.declined {
+  background-color: var(--alert);
+  color: var(--text-on-primary);
+}
+
+.awaiting-response {
+  background-color: var(--warning);
+  color: var(--text-on-primary);
+}

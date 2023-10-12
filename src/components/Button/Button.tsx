@@ -1,28 +1,49 @@
-import React, { Component } from "react";
-import Button from "devextreme-react/button";
+import React from "react";
+
 import "../../assets/button.css";
 
-interface ButtonProps {
-  disabled?: boolean;
+interface CustomButtonProps {
   text: string;
+  primary?: boolean;
+  secondary?: boolean;
+  cancel?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
+  className?: string;
 }
 
-class CustomButton extends Component<ButtonProps> {
-  render() {
-    const isDisabled =
-      this.props.disabled === undefined ? false : this.props.disabled;
+const CustomButton: React.FC<CustomButtonProps> = ({
+  text,
+  primary,
+  secondary,
+  cancel,
+  onClick,
+  disabled,
+  className,
+}) => {
+  const buttonClass = primary
+    ? "primary-button"
+    : secondary
+    ? "secondary-button"
+    : cancel
+    ? "cancel-button"
+    : "";
 
-    return (
-      <Button
-        disabled={isDisabled}
-        className="basic-button"
-        onClick={this.props.onClick}
-      >
-        {this.props.text}
-      </Button>
-    );
-  }
-}
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <button
+      className={`custom-button ${buttonClass} ${className || ""}`}
+      onClick={handleClick}
+      disabled={disabled}
+    >
+      {text}
+    </button>
+  );
+};
 
 export default CustomButton;
