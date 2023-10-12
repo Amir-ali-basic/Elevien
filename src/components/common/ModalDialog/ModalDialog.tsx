@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomButton from "../Button/Button";
-import "../../assets/modalDialog.css";
-import CloseIcon from "../../assets/images/closeIcon.png";
+import "../../../assets/modalDialog.css";
+import CloseIcon from "../../../assets/images/closeIcon.png";
 
 interface ModalDialogProps {
   isVisible: boolean;

@@ -1,10 +1,10 @@
 import competitionStore from "../../stores/CompetitionStore";
-import CountryDropdown from "../CountryDropDown/CountryDropdown";
-import Dropdown from "../DropdownComponent/Dropdown";
-import TextInput from "../TextInput/TextInput";
+import CountryDropdown from "../common/CountryDropDown/CountryDropdown";
+import Dropdown from "../common/DropdownComponent/Dropdown";
+import TextInput from "../common/TextInput/TextInput";
 import "../../assets/form.css";
-import DatePicker from "../DatePicker/DatePicker";
-import PhoneNumberInput from "../PhoneNumberInput/PhoneNumberInput";
+import DatePicker from "../common/DatePicker/DatePicker";
+import PhoneNumberInput from "../common/PhoneNumberInput/PhoneNumberInput";
 
 function ApplicationForm() {
   const categories = [
@@ -130,7 +130,7 @@ function ApplicationForm() {
             readOnly={false}
             value={competitionStore.application.club}
             onValueChange={(newValue: string) => {
-              competitionStore.application.lastName = newValue;
+              competitionStore.application.club = newValue;
             }}
             placeholder="Club"
           />
@@ -143,7 +143,7 @@ function ApplicationForm() {
             readOnly={false}
             value={competitionStore.application.teamName}
             onValueChange={(newValue: string) => {
-              competitionStore.application.lastName = newValue;
+              competitionStore.application.teamName = newValue;
             }}
             placeholder="Team"
           />

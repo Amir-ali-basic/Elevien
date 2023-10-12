@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../assets/button.css";
+import "../../../assets/button.css";
 
 interface CustomButtonProps {
   text: string;

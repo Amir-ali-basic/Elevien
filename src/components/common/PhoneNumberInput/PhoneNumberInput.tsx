@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import DxSelectBox from "devextreme-react/select-box";
 import TextInput from "../TextInput/TextInput";
-import { CountryModel } from "../../models/CountryModel";
-import "../../assets/phoneNumberInput.css";
+import { CountryModel } from "../../../models/CountryModel";
+import "../../../assets/phoneNumberInput.css";
 
 interface PhoneNumberInputProps {
   label: string;

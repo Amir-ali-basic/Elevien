@@ -5,8 +5,9 @@ import Grid from "../components/Grid/Grid";
 import Filters from "../components/Filters/Filters";
 import MasterGrid from "../components/MasterGrid/MasterGrid";
 import competitionStore from "../stores/CompetitionStore";
-import ModalDialog from "../components/ModalDialog/ModalDialog";
+import ModalDialog from "../components/common/ModalDialog/ModalDialog";
 import ApplicationForm from "../components/ApplicationForm/ApplicationForm";
+import ErrorComponent from "../components/ApiErrorComponent/ErrorComponent";
 
 function Competition() {
   //TODO: modal titile i close(x) treba popraviti
@@ -53,6 +54,7 @@ function Competition() {
       >
         <ApplicationForm />
       </ModalDialog>
+      <ErrorComponent isVisible={competitionStore.haveApiError} />
     </div>
   );
 }

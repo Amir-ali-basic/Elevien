@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import DxSelectBox from "devextreme-react/select-box";
 import { useEffect } from "react";
 import { ValueChangedEvent } from "devextreme/ui/drop_down_box";
@@ -8,7 +8,7 @@ interface DropdownProps {
   disabled?: boolean;
   showLabel?: boolean;
   value: string;
-  items: string[] | any;
+  items: string[];
   placeholder: string;
   onValueChange: (newValue: string) => void;
 }

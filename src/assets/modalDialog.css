@@ -33,11 +33,14 @@
 }
 
 .modal-header {
-  height: 15%;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 40px;
+}
+.modal-header h2 {
+  margin: 0 !important;
 }
 
 .modal-body {

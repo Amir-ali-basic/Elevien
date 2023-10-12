@@ -1,7 +1,7 @@
 import React from "react";
 import NoDataPlaceholder from "../../assets/images/NoDataPlaceholder.png";
 import "../../assets/noDataComponent.css";
-import CustomButton from "../Button/Button";
+import CustomButton from "../common/Button/Button";
 
 interface NoDataComponentProps {
   onClick?: () => void;

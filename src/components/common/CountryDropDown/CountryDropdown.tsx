@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import DxSelectBox from "devextreme-react/select-box";
 import { ValueChangedEvent } from "devextreme/ui/drop_down_box";
-import "../../assets/inputs.css";
-import { CountryModel } from "../../models/CountryModel";
+import "../../../assets/inputs.css";
+import { CountryModel } from "../../../models/CountryModel";
 
 interface CountryDropdownProps {
   label?: string;

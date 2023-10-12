@@ -1,7 +1,7 @@
 import React from "react";
 import DataGrid, { MasterDetail } from "devextreme-react/data-grid";
 import "./grid.css";
-import CustomButton from "../Button/Button";
+import CustomButton from "../common/Button/Button";
 import Status from "../Status/Status";
 import { StatusType } from "../../types/StatusType";
 import DataSource from "devextreme/data/data_source";
@@ -29,8 +29,6 @@ function Grid(props: GridProps) {
     }
     return <h3>All request ({count})</h3>;
   };
-
-  console.log("props.masterGridComponent", props.masterGridComponent);
 
   return (
     <div>

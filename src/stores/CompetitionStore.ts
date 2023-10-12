@@ -1,4 +1,4 @@
-import { computed, makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { GridColumns } from "../pages/GridColumns";
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
@@ -6,6 +6,9 @@ import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
 import { VisibilityController } from "../viewModels/VisibilityController";
+import { validationSchema } from "../components/ApplicationForm/FormValidation";
+import { getAllApplications } from "../services/services.api";
+import { NotifyService } from "../services/NotifyService";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -14,6 +17,8 @@ class CompetitionStore {
   gridColumns: GridColumns;
   masterDetails: MasterDetailModel[];
   applicationModalVisibility: VisibilityController;
+  haveApiError: boolean;
+  notifyService: NotifyService;
 
   constructor() {
     makeAutoObservable(this);
@@ -43,6 +48,8 @@ class CompetitionStore {
       }
     );
     this.applicationModalVisibility = new VisibilityController();
+    this.haveApiError = false;
+    this.notifyService = new NotifyService();
   }
 
   gridCancelClickHandler() {
@@ -54,7 +61,13 @@ class CompetitionStore {
   }
 
   confirmButtonHandler() {
-    console.log("Value of form", this.application);
+    validationSchema.isValid(this.application).then((res: any) => {
+      if (res === false) {
+        this.notifyService.showError("Please fill al field");
+        return;
+      }
+      this.notifyService.showSuccess("Your data is sent");
+    });
   }
 }
 

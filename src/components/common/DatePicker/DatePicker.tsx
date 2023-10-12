@@ -9,6 +9,7 @@ interface DatePickerProps {
   value: string | undefined;
   placeholder: string;
   showDatePicker?: boolean;
+  displayFormat?: string;
   onDateChange: (newValue: string) => void;
 }
 
@@ -37,6 +38,8 @@ const DatePicker: React.FC<DatePickerProps> = (props) => {
         width="100%"
         placeholder={props.placeholder}
         showDropDownButton={props.showDatePicker || false}
+        displayFormat={props.displayFormat || "dd.MM.yyyy"}
+        type="date"
       />
     </div>
   );
