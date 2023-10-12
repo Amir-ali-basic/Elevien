@@ -6,7 +6,7 @@ import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
-import { getAllApplications } from "../services/services.api";
+// import { getAllApplications } from "../services/services.api";
 import { NotifyService } from "../services/NotifyService";
 
 class CompetitionStore {

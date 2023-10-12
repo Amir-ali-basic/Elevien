@@ -1,6 +1,5 @@
 import "devextreme/dist/css/dx.light.css";
 import "devextreme/dist/css/dx.common.css";
-import React, { useState } from "react";
 import Grid from "../components/Grid/Grid";
 import Filters from "../components/Filters/Filters";
 import MasterGrid from "../components/MasterGrid/MasterGrid";
