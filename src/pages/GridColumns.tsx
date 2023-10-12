@@ -34,13 +34,9 @@ export class GridColumns {
         width: "20%",
         cellTemplate: (container, options) => {
           const data = new NameCellModel(options.data);
-          console.log("data", data);
-          const cellElement = document.createElement("div");
+
           const root = createRoot(container);
-
-          ReactDOM.render(<NameCell {...data} />, cellElement);
-
-          container.append(cellElement);
+          root.render(<NameCell {...data} />);
         },
       },
       {
@@ -83,13 +79,10 @@ export class GridColumns {
         allowReordering: false,
         allowSorting: false,
         cellTemplate: (container, options) => {
-          const status = options.data.status;
-          const cellElement = document.createElement("div");
+          const data = options.data.status;
+
           const root = createRoot(container);
-
-          ReactDOM.render(<StatusCell status={status} />, cellElement);
-
-          container.append(cellElement);
+          root.render(<StatusCell status={data} />);
         },
       },
       {

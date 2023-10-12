@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../../assets/button.css";
+import "../../../assets/button.css";
 
 interface CustomButtonProps {
   text: string;
@@ -34,7 +34,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick();
     }
   };
-
+  //css za disabled
   return (
     <button
       className={`custom-button ${buttonClass} ${className || ""}`}

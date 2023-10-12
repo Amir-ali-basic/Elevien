@@ -1,11 +1,13 @@
-import { computed, makeAutoObservable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { GridColumns } from "../pages/GridColumns";
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
 import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
-import { VisibilityController } from "../viewModels/VisibilityController";
+import { validationSchema } from "../components/ApplicationForm/FormValidation";
+import { getAllApplications } from "../services/services.api";
+import { NotifyService } from "../services/NotifyService";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -13,10 +15,13 @@ class CompetitionStore {
   gridDataSource: DataSource;
   gridColumns: GridColumns;
   masterDetails: MasterDetailModel[];
-  applicationModalVisibility: VisibilityController;
+  applicationModalVisibility: boolean;
+  haveApiError: boolean;
+  notifyService: NotifyService;
 
   constructor() {
     makeAutoObservable(this);
+
     this.gridColumns = new GridColumns(
       this.gridCancelClickHandler,
       this.gridRequestRemovalClickHandler
@@ -28,7 +33,7 @@ class CompetitionStore {
           return new Promise((resolve) => {
             resolve({
               data: dataSourceMock.map((item: any) => item),
-              totalCount: dataSourceMock.length,
+              totalCount: dataSourceMock.length, //need to be fixed
             });
           });
         },
@@ -42,7 +47,10 @@ class CompetitionStore {
         return new MasterDetailModel(application);
       }
     );
-    this.applicationModalVisibility = new VisibilityController();
+    this.applicationModalVisibility = false;
+    this.haveApiError = false;
+    this.notifyService = new NotifyService();
+    makeAutoObservable(this.application);
   }
 
   gridCancelClickHandler() {
@@ -53,8 +61,37 @@ class CompetitionStore {
     console.log("gridRequestRemovalClickHandler");
   }
 
-  confirmButtonHandler() {
-    console.log("Value of form", this.application);
+  resetApplicationModel() {
+    this.application = new ApplicationModel();
+  }
+
+  showApplicationModal() {
+    this.applicationModalVisibility = true;
+  }
+
+  hideApplicationModal() {
+    this.applicationModalVisibility = false;
+  }
+
+  abortButtonHandler() {
+    this.resetApplicationModel();
+    this.hideApplicationModal();
+  }
+
+  sendApplication() {
+    validationSchema.isValid(this.application).then((res: any) => {
+      if (res === false) {
+        this.notifyService.showError("Please fill al field");
+        return;
+      }
+      this.notifyService.showSuccess("Your data is sent");
+      console.log(
+        "post model",
+        this.application.toCreateCommand(this.application)
+      );
+      this.resetApplicationModel();
+      this.hideApplicationModal();
+    });
   }
 }
 

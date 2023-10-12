@@ -28,7 +28,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
 
   return (
     <div className="dx-field">
-      <span>{props.label}</span>
+      {props.showLabel && <p className="input-label">{props.label}</p>}
       <DxTextBox
         disabled={props.disabled}
         readOnly={props.readOnly}

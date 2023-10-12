@@ -1,20 +1,13 @@
 import React, { useState } from "react";
 import DxSelectBox from "devextreme-react/select-box";
 import { ValueChangedEvent } from "devextreme/ui/drop_down_box";
-import "../../assets/inputs.css";
-
-interface Country {
-  cognitoId: string;
-  code: string;
-  name: string;
-  phoneCode: string;
-  flag: string;
-}
+import "../../../assets/inputs.css";
+import { CountryModel } from "../../../models/CountryModel";
 
 interface CountryDropdownProps {
   label?: string;
   value: string;
-  countries: Country[];
+  countries: CountryModel[];
   onValueChange: (newValue: string) => void;
 }
 
@@ -28,21 +21,7 @@ const CountryDropdown: React.FC<CountryDropdownProps> = (props) => {
   };
 
   // Custom item template for the dropdown
-  const itemTemplate = (data: Country) => (
-    <div className="custom-country-item">
-      <img
-        src={`https://www.countryflagicons.com/FLAT/64/${data.code}.png`}
-        height="24px"
-        width="24px"
-        alt={data.name}
-        className="country-flag"
-      />
-      <span>{data.name}</span>
-    </div>
-  );
-
-  // Custom value rendering for the selected value
-  const valueRender = (data: Country) => (
+  const itemTemplate = (data: CountryModel) => (
     <div className="custom-country-item">
       <img
         src={`https://www.countryflagicons.com/FLAT/64/${data.code}.png`}
@@ -57,7 +36,7 @@ const CountryDropdown: React.FC<CountryDropdownProps> = (props) => {
 
   return (
     <div className="dx-field">
-      <span>{props.label}</span>
+      <p className="input-label">{props.label}</p>
       <DxSelectBox
         value={selectedCountry}
         items={props.countries}

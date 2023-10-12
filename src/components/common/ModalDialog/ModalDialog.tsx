@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CustomButton from "../Button/Button";
-import "../../assets/modalDialog.css";
-import CloseIcon from "../../assets/images/closeIcon.png";
+import "../../../assets/modalDialog.css";
+import CloseIcon from "../../../assets/images/closeIcon.png";
 
 interface ModalDialogProps {
   isVisible: boolean;
@@ -13,6 +13,7 @@ interface ModalDialogProps {
   abort: () => void;
   confirm: () => void;
 }
+//TODO: buttom style can also be a prop
 
 function ModalDialog(props: ModalDialogProps) {
   const [isVisible, setIsVisible] = useState(props.isVisible);
@@ -55,7 +56,7 @@ function ModalDialog(props: ModalDialogProps) {
             <CustomButton
               text={props.confirmButtonText}
               onClick={props.confirm}
-              secondary={true}
+              primary={true}
             />
           </div>
         </div>

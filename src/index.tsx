@@ -5,6 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "mobx-react";
 import competitionStore from "./stores/CompetitionStore";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const stores = {
   competitionStore,
@@ -15,7 +17,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider {...stores}>
-    <App />
+    <React.StrictMode>
+      <App />
+      <ToastContainer /> {/* Add this line */}
+    </React.StrictMode>
+    ,
   </Provider>
 );
 

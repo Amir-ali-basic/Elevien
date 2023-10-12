@@ -63,7 +63,7 @@ h4 {
   font-size: 12px;
   font-weight: bold;
 }
-
+/*TODO: TREBA SREDITI CONTAINER*/
 .container {
   padding-left: 25px;
   padding-right: 25px;
@@ -83,4 +83,30 @@ body {
 }
 .grid-row-button:hover {
   cursor: pointer;
+}
+.input-label {
+  font-size: 12px;
+  line-height: 14px;
+  margin: 0;
+  margin-bottom: 6px;
+}
+
+.error-component {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--tertlary-dark);
+  color: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+button:disabled {
+  background-color: var(--tertlary-dark) !important;
+  color: var(--text-on-disabled);
 }

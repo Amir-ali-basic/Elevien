@@ -1,0 +1,23 @@
+.phone-number-input-dropdown {
+  width: 100%;
+}
+.phone-number-input-continaer {
+  display: flex;
+  width: 100%;
+  border: 1px solid #d6d5dc;
+  border-radius: 5px;
+}
+.phone-code-dropdown {
+  width: 30%;
+}
+
+.phone-code-dropdown .dx-dropdowneditor.dx-dropdowneditor-field-clickable,
+.dx-dropdowneditor.dx-dropdowneditor-field-clickable .dx-texteditor-input {
+  border: none;
+}
+.phone-number-input {
+  width: 70%;
+}
+.phone-number-input .dx-texteditor.dx-editor-outlined {
+  border: none;
+}
