@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.application-form-first-row {
+  flex: 1;
+}
+
+.application-form-first-row > .application-form-input {
+  flex: 1;
+  max-width: calc(50% - 5px);
+}
+
+.application-form-country {
+  width: 110px;
+}

@@ -6,15 +6,21 @@ import Filters from "../components/Filters/Filters";
 import MasterGrid from "../components/MasterGrid/MasterGrid";
 import competitionStore from "../stores/CompetitionStore";
 import ModalDialog from "../components/ModalDialog/ModalDialog";
+import ApplicationForm from "../components/ApplicationForm/ApplicationForm";
 
 function Competition() {
+  //TODO: modal titile i close(x) treba popraviti
+  //TODO: Grid columns treba da pozove button sa stilom
+  //TODO: CSS je ocajan - refactoring
   const columns = competitionStore.gridColumns.getDefaultColumns();
   const dataSource = competitionStore.gridDataSource;
   const masterGridData = competitionStore.masterDetails;
-  const [isVisible, setIsVisible] = useState(false);
+  //Oovo je ocajna praksa da bilo kakva logika bude u komponenti !!!!
+  const [isApplicationModalVisible, setIsApplicationModalVisible] =
+    useState(false);
   function addNewApplication() {
     competitionStore.applicationModalVisibility.show();
-    setIsVisible(true);
+    setIsApplicationModalVisible(true);
   }
 
   function apply() {
@@ -37,21 +43,16 @@ function Competition() {
         noDataActionButton={() => apply()}
       ></Grid>
       <ModalDialog
-        isVisible={isVisible}
+        isVisible={isApplicationModalVisible}
         title="Your Modal Title"
         showTitle={true}
         abortButtonText="Cancel"
         confirmButtonText="Confirm"
-        abort={() => setIsVisible(false)}
-        confirm={() =>
-          console.log(
-            "Confirm action",
-            competitionStore.applicationModalVisibility.hide()
-          )
-        }
+        abort={() => setIsApplicationModalVisible(false)}
+        confirm={() => competitionStore.confirmButtonHandler()}
       >
         {/* Content of your modal */}
-        <p>This is the modal content.</p>
+        <ApplicationForm />
       </ModalDialog>
     </div>
   );
