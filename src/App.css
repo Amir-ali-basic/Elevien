@@ -105,3 +105,8 @@ body {
   flex-direction: column;
   align-items: center;
 }
+
+button:disabled {
+  background-color: var(--tertlary-dark) !important;
+  color: var(--text-on-disabled);
+}

@@ -49,3 +49,10 @@
 .dx-datagrid-content .dx-datagrid-table .dx-row > tr > td {
   vertical-align: middle;
 }
+.closed-competioton-message {
+  height: 100%;
+  width: 100%;
+}
+.closed-competioton-message h1 {
+  margin: auto;
+}

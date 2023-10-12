@@ -23,7 +23,9 @@ interface GridProps {
 
 //multiple buttons can be added
 function Grid(props: GridProps) {
+  const isClosed = props.status === "Closed";
   const renderRequestCount = (count: number) => {
+    console.log("props.dataSource", props.dataSource);
     if (count === 0) {
       return null;
     }
@@ -34,30 +36,43 @@ function Grid(props: GridProps) {
     <div>
       {/*TODO: treba narpaviti komponente */}
       {/*TODO: namjesti visinu grida jer nemamo paging */}
-      {/* TODO: AKO JE STATUS CLOSED TREBA NAPRAVITI KOMPONENTU KOJA CE SE PRIKAZZATI */}
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
         <div className="grid-header-actions">
-          <CustomButton text={props.buttonText} onClick={props.addNewAction} />
+          <CustomButton
+            text={props.buttonText}
+            onClick={props.addNewAction}
+            disabled={isClosed}
+          />
           <Status status={props.status}></Status>
         </div>
       </div>
+      <div className="line"></div>
       <div>{props.filters}</div>
-      {renderRequestCount(props.dataSource.totalCount())}
-      {props.dataSource.totalCount() !== 0 ? (
-        <DataGrid
-          className="custom-grid"
-          dataSource={props.dataSource}
-          columns={props.columns}
-          allowColumnResizing={props.allowColumnResizing}
-        >
-          <MasterDetail
-            enabled={props.showMasterDetail}
-            component={props.masterGridComponent}
-          ></MasterDetail>
-        </DataGrid>
+
+      {isClosed ? (
+        <div className="closed-competioton-message">
+          <h1>This competition is closed!</h1>
+        </div>
       ) : (
-        <NoDataComponent onClick={props.noDataActionButton} />
+        <>
+          {renderRequestCount(props.dataSource.totalCount())}
+          {props.dataSource.totalCount() !== 0 ? (
+            <DataGrid
+              className="custom-grid"
+              dataSource={props.dataSource}
+              columns={props.columns}
+              allowColumnResizing={props.allowColumnResizing}
+            >
+              <MasterDetail
+                enabled={props.showMasterDetail}
+                component={props.masterGridComponent}
+              ></MasterDetail>
+            </DataGrid>
+          ) : (
+            <NoDataComponent onClick={props.noDataActionButton} />
+          )}
+        </>
       )}
     </div>
   );

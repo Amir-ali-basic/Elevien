@@ -29,4 +29,20 @@ export class ApplicationModel {
     this.club = data?.club ? data.club : "";
     this.dateOfBirth = data?.dateOfBirth ? data.dateOfBirth : "";
   }
+  toCreateCommand(data: ApplicationModel): ApplicationModel {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+    //ovo je lose
+    const [program, category] = this.categoryName.split(" - ");
+
+    const createCommandData = new ApplicationModel({
+      ...this,
+      date: formattedDate,
+      status: "awaiting response",
+      programName: program,
+      categoryName: category,
+    });
+
+    return createCommandData;
+  }
 }

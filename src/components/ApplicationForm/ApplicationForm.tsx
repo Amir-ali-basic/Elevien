@@ -5,59 +5,11 @@ import TextInput from "../common/TextInput/TextInput";
 import "../../assets/form.css";
 import DatePicker from "../common/DatePicker/DatePicker";
 import PhoneNumberInput from "../common/PhoneNumberInput/PhoneNumberInput";
+import { countriesList } from "../../mocks/countryList";
+import { CategoriesAndPrograms } from "../../mocks/Categories";
+import { observer } from "mobx-react";
 
-function ApplicationForm() {
-  const categories = [
-    "Select Category",
-    "Category 1",
-    "Category 2",
-    "Category 3",
-  ];
-  const countries = [
-    {
-      cognitoId: "114436de-e7a5-4534-b748-38afc7a9f1ba",
-      code: "AF",
-      name: "Afghanistan",
-      phoneCode: "93",
-      flag: "🇦🇫",
-    },
-    {
-      cognitoId: "ce42d5d7-6f61-437b-b359-1a0e9e0c4d68",
-      code: "AX",
-      name: "Åland Islands",
-      phoneCode: "35818",
-      flag: "🇦🇽",
-    },
-    {
-      cognitoId: "e36d7505-7dec-4d7a-a6d2-f503a9d7d1ac",
-      code: "AL",
-      name: "Albania",
-      phoneCode: "355",
-      flag: "🇦🇱",
-    },
-    {
-      cognitoId: "ec3a03a3-985a-4724-803c-e43664366ced",
-      code: "DZ",
-      name: "Algeria",
-      phoneCode: "213",
-      flag: "🇩🇿",
-    },
-    {
-      cognitoId: "db669e6f-01fb-401d-b520-d394127a07ef",
-      code: "AS",
-      name: "American Samoa",
-      phoneCode: "1684",
-      flag: "🇦🇸",
-    },
-    {
-      cognitoId: "625dac46-cf93-44be-b501-381f5bf566fc",
-      code: "AD",
-      name: "Andorra",
-      phoneCode: "376",
-      flag: "🇦🇩",
-    },
-  ];
-
+const ApplicationForm = observer(() => {
   return (
     <div className="application-form">
       <div className="row application-form-first-row">
@@ -90,7 +42,7 @@ function ApplicationForm() {
         <div className="application-form-country">
           <CountryDropdown
             value={competitionStore.application.country}
-            countries={countries}
+            countries={countriesList}
             onValueChange={(newValue: string) => {
               competitionStore.application.country = newValue;
             }}
@@ -103,7 +55,7 @@ function ApplicationForm() {
           <Dropdown
             label="Program and category"
             value={competitionStore.application.categoryName}
-            items={categories}
+            items={CategoriesAndPrograms}
             placeholder="Program and category"
             onValueChange={(newValue: string) => {
               competitionStore.application.categoryName = newValue;
@@ -153,7 +105,7 @@ function ApplicationForm() {
         <div className="aplication-form-phone-input">
           <PhoneNumberInput
             label="Phone (Optional)"
-            countries={countries}
+            countries={countriesList}
             value={competitionStore.application.phone}
             onValueChange={(newValue) => {
               competitionStore.application.phone = newValue.fullPhoneNumber;
@@ -164,6 +116,6 @@ function ApplicationForm() {
       <div className="line"></div>
     </div>
   );
-}
+});
 
 export default ApplicationForm;
