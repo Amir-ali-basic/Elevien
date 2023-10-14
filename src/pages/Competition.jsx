@@ -8,7 +8,6 @@ import ModalDialog from "../components/common/ModalDialog/ModalDialog";
 import ApplicationForm from "../components/ApplicationForm/ApplicationForm";
 import ErrorComponent from "../components/ApiErrorComponent/ErrorComponent";
 import { observer } from "mobx-react";
-import { FormValidation } from "../components/ApplicationForm/FormValidation";
 
 const Competition = observer(() => {
   //TODO: modal titile i close(x) treba popraviti
@@ -17,7 +16,6 @@ const Competition = observer(() => {
   const columns = competitionStore.gridColumns.getDefaultColumns();
   const dataSource = competitionStore.gridDataSource;
   const masterGridData = competitionStore.masterDetails;
-  const formik = FormValidation({ onSubmit: competitionStore.formSubmit });
 
   return (
     <div>

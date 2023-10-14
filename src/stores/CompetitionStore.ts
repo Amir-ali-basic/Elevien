@@ -8,7 +8,6 @@ import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
 // import { getAllApplications } from "../services/services.api";
 import { NotifyService } from "../services/NotifyService";
-import { getAllApplications, getAllCountries } from "../services/services.api";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -55,9 +54,6 @@ class CompetitionStore {
   }
 
   gridCancelClickHandler() {
-    getAllCountries().then((res) => {
-      console.log("res", res);
-    });
     console.log("gridCancelClickHandler");
   }
 
