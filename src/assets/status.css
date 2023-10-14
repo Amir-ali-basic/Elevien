@@ -3,11 +3,12 @@
   width: 90px;
   height: 42px;
   border-radius: 4px;
+  gap: 10px;
 }
 
 .status .status-content {
   display: flex;
-  gap: 2px;
+  gap: 10px;
   justify-content: center;
   align-items: center;
 }

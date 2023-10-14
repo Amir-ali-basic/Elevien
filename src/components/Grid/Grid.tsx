@@ -32,7 +32,7 @@ function Grid(props: GridProps) {
   };
 
   return (
-    <div>
+    <div className="gridContainer">
       {/*TODO: namjesti visinu grida jer nemamo paging */}
       <div className="grid-header">
         <h1 className="title">{props.title}</h1>
@@ -61,6 +61,7 @@ function Grid(props: GridProps) {
               dataSource={props.dataSource}
               columns={props.columns}
               allowColumnResizing={props.allowColumnResizing}
+              rowAlternationEnabled={true}
             >
               <MasterDetail
                 enabled={props.showMasterDetail}

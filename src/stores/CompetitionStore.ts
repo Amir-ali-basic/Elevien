@@ -93,6 +93,34 @@ class CompetitionStore {
       this.hideApplicationModal();
     });
   }
+
+  formSubmit() {
+    validationSchema
+      .validate(this.application, { abortEarly: false })
+      .then((valid) => {
+        if (valid) {
+          // POST
+          this.notifyService.showSuccess(
+            "Your data has been successfully submitted."
+          );
+          console.log(
+            "post model",
+            this.application.toCreateCommand(this.application)
+          );
+          this.resetApplicationModel();
+          this.hideApplicationModal();
+        }
+      })
+      .catch((errors) => {
+        if (errors.inner) {
+          errors.inner.forEach((error: any) => {
+            this.notifyService.showError(error.message);
+          });
+        } else {
+          this.notifyService.showError("Validation errors occurred.");
+        }
+      });
+  }
 }
 
 const competitionStore = new CompetitionStore();

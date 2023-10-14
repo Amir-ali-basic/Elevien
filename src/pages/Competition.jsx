@@ -22,7 +22,7 @@ const Competition = observer(() => {
       <Grid
         dataSource={dataSource}
         columns={columns}
-        buttonText="Add new application"
+        buttonText="New application"
         status="Open"
         showMasterDetail={true}
         masterGridComponent={MasterGrid}
@@ -39,7 +39,7 @@ const Competition = observer(() => {
         abortButtonText="Cancel"
         confirmButtonText="Confirm"
         abort={() => competitionStore.abortButtonHandler()}
-        confirm={() => competitionStore.sendApplication()}
+        confirm={() => competitionStore.formSubmit()}
       >
         <ApplicationForm />
       </ModalDialog>

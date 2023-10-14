@@ -8,8 +8,11 @@ import PhoneNumberInput from "../common/PhoneNumberInput/PhoneNumberInput";
 import { countriesList } from "../../mocks/countryList";
 import { CategoriesAndPrograms } from "../../mocks/Categories";
 import { observer } from "mobx-react";
+import { FormValidation } from "./FormValidation";
 
 const ApplicationForm = observer(() => {
+  const formik = FormValidation({ onSubmit: competitionStore.formSubmit });
+
   return (
     <div className="application-form">
       <div className="row application-form-first-row">
@@ -22,9 +25,17 @@ const ApplicationForm = observer(() => {
             value={competitionStore.application.firstName}
             onValueChange={(newValue) => {
               competitionStore.application.firstName = newValue;
+              formik.validateField("firstName");
+              formik.setFieldValue(
+                "firstName",
+                competitionStore.application.firstName
+              );
             }}
             placeholder="First Name"
           />
+          {formik.errors.firstName ? (
+            <span className="validation-error">{formik.errors.firstName}</span>
+          ) : null}
         </div>
         <div className="application-form-input">
           <TextInput
@@ -32,12 +43,19 @@ const ApplicationForm = observer(() => {
             label="Last Name"
             disabled={false}
             readOnly={false}
-            value={competitionStore.application.firstName}
+            value={competitionStore.application.lastName}
             onValueChange={(newValue: string) => {
               competitionStore.application.lastName = newValue;
+              formik.setFieldValue(
+                "lastName",
+                competitionStore.application.lastName
+              );
             }}
             placeholder="Last Name"
           />
+          {formik.errors.lastName ? (
+            <span className="validation-error">{formik.errors.lastName}</span>
+          ) : null}
         </div>
         <div className="application-form-country">
           <CountryDropdown
@@ -45,9 +63,16 @@ const ApplicationForm = observer(() => {
             countries={countriesList}
             onValueChange={(newValue: string) => {
               competitionStore.application.country = newValue;
+              formik.setFieldValue(
+                "country",
+                competitionStore.application.country
+              );
             }}
             label="Country"
           />
+          {formik.errors.country ? (
+            <span className="validation-error">{formik.errors.country}</span>
+          ) : null}
         </div>
       </div>
       <div className="row application-form-second-row">
@@ -59,8 +84,17 @@ const ApplicationForm = observer(() => {
             placeholder="Program and category"
             onValueChange={(newValue: string) => {
               competitionStore.application.categoryName = newValue;
+              formik.setFieldValue(
+                "categoryName",
+                competitionStore.application.categoryName
+              );
             }}
           />
+          {formik.errors.categoryName ? (
+            <span className="validation-error">
+              {formik.errors.categoryName}
+            </span>
+          ) : null}
         </div>
         <div className="application-form-date">
           <DatePicker
@@ -69,8 +103,17 @@ const ApplicationForm = observer(() => {
             placeholder="Enter date"
             onDateChange={(newValue: string) => {
               competitionStore.application.dateOfBirth = newValue;
+              formik.setFieldValue(
+                "dateOfBirth",
+                competitionStore.application.dateOfBirth
+              );
             }}
           />
+          {formik.errors.dateOfBirth ? (
+            <span className="validation-error">
+              {formik.errors.dateOfBirth}
+            </span>
+          ) : null}
         </div>
       </div>
       <div className="row application-form-third-row">
