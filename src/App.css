@@ -1,5 +1,6 @@
 :root {
   --primary-color: #ff2b51;
+  --secondary-color: #d6d5dc;
   --primary-variant-judger: #ff842b;
   --text-primary: #000000;
   --text-primary-light: #38354d;
@@ -109,4 +110,9 @@ body {
 button:disabled {
   background-color: var(--tertlary-dark) !important;
   color: var(--text-on-disabled);
+}
+
+.validation-error {
+  font-size: 12px;
+  color: var(--alert);
 }

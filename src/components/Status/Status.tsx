@@ -26,7 +26,7 @@ function Status(props: StatusProps) {
           className="status-icon"
           style={{ backgroundColor: getStatusColor() }}
         ></div>
-        <p className="text-sm">{props.status}</p>
+        <p className="text-sm-bold">{props.status}</p>
       </div>
     </div>
   );

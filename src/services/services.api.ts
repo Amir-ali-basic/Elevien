@@ -9,13 +9,17 @@ export function getAllApplications(): Promise<ApplicationModel[]> {
   return fetch("https://elevien-fe-job.free.beeceptor.com/applications")
     .then((res) => {
       if (!res.ok) {
-        competitionStore.haveApiError = true;
+        throw new Error("Response is not OK");
       }
-      return res.json();
+      return res.text();
     })
     .then((data) => {
       console.log("API Response:", data);
-      return data;
+      return JSON.parse(data);
+    })
+    .then((jsonData) => {
+      console.log("Parsed Data:", jsonData);
+      return jsonData;
     })
     .catch((error) => {
       console.error("API Error:", error);

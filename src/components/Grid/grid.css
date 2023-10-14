@@ -56,3 +56,7 @@
 .closed-competioton-message h1 {
   margin: auto;
 }
+
+.dx-row-alt > td {
+  background-color: var(--secondary-color);
+}

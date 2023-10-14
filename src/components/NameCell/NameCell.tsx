@@ -3,7 +3,7 @@ import { NameCellModel } from "../../models/NameCellModel";
 import "../../assets/nameCell.css";
 
 function NameCell(props: NameCellModel) {
-  const flagSrc = `https://www.countryflagicons.com/FLAT/64/${props.country}.png`;
+  const flagSrc = `https://flagsapi.com/${props.country}/flat/64.png`;
   return (
     <div className="name-cell">
       <div className="text-sm">{`${props.firstName} ${props.lastName}`}</div>

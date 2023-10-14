@@ -61,6 +61,7 @@ function Grid(props: GridProps) {
               dataSource={props.dataSource}
               columns={props.columns}
               allowColumnResizing={props.allowColumnResizing}
+              rowAlternationEnabled={true}
             >
               <MasterDetail
                 enabled={props.showMasterDetail}

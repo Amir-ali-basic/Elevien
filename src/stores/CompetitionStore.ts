@@ -8,6 +8,7 @@ import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
 // import { getAllApplications } from "../services/services.api";
 import { NotifyService } from "../services/NotifyService";
+import { getAllApplications, getAllCountries } from "../services/services.api";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -54,6 +55,9 @@ class CompetitionStore {
   }
 
   gridCancelClickHandler() {
+    getAllCountries().then((res) => {
+      console.log("res", res);
+    });
     console.log("gridCancelClickHandler");
   }
 
@@ -92,6 +96,34 @@ class CompetitionStore {
       this.resetApplicationModel();
       this.hideApplicationModal();
     });
+  }
+
+  formSubmit() {
+    validationSchema
+      .validate(this.application, { abortEarly: false })
+      .then((valid) => {
+        if (valid) {
+          // POST
+          this.notifyService.showSuccess(
+            "Your data has been successfully submitted."
+          );
+          console.log(
+            "post model",
+            this.application.toCreateCommand(this.application)
+          );
+          this.resetApplicationModel();
+          this.hideApplicationModal();
+        }
+      })
+      .catch((errors) => {
+        if (errors.inner) {
+          errors.inner.forEach((error: any) => {
+            this.notifyService.showError(error.message);
+          });
+        } else {
+          this.notifyService.showError("Validation errors occurred.");
+        }
+      });
   }
 }
 
