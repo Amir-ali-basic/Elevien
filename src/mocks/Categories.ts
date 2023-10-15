@@ -7,7 +7,7 @@ const categoriesList = [
   "Stariji Djecaci",
 ];
 
-const programs = ["Obrazovni program", "Univerzalni program"];
+const programs = ["Obavezni program", "Univerzalni program"];
 
 for (const program of programs) {
   for (const category of categoriesList) {

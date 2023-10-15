@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Ref, useEffect, useRef } from "react";
 import DataGrid, { MasterDetail } from "devextreme-react/data-grid";
 import "./grid.css";
 import CustomButton from "../common/Button/Button";
@@ -15,21 +15,31 @@ interface GridProps {
   columns: any;
   showMasterDetail?: boolean;
   masterGridComponent?: React.ComponentType<any>;
-  filters?: React.ReactNode;
+  filters: React.ReactNode;
   allowColumnResizing?: boolean;
+  totalCount: number;
   addNewAction?: () => void;
   noDataActionButton?: () => void;
+  initialized?: (ref: any) => void;
 }
 
 //multiple buttons can be added
 function Grid(props: GridProps) {
   const isClosed = props.status === "Closed";
+  const gridRef = useRef(null);
+  const { initialized } = props;
   const renderRequestCount = (count: number) => {
     if (count === 0) {
       return null;
     }
     return <h3>All request ({count})</h3>;
   };
+
+  useEffect(() => {
+    if (initialized) {
+      initialized(gridRef);
+    }
+  }, [initialized, gridRef]);
 
   return (
     <div className="gridContainer">
@@ -46,22 +56,22 @@ function Grid(props: GridProps) {
         </div>
       </div>
       <div className="line"></div>
-      <div>{props.filters}</div>
-
       {isClosed ? (
         <div className="closed-competioton-message">
           <h1>This competition is closed!</h1>
         </div>
       ) : (
         <>
-          {renderRequestCount(props.dataSource.totalCount())}
-          {props.dataSource.totalCount() !== 0 ? (
+          <div className="grid-filters">{props.filters}</div>
+          {renderRequestCount(props.totalCount)}
+          {props.totalCount !== 0 ? (
             <DataGrid
               className="custom-grid"
               dataSource={props.dataSource}
               columns={props.columns}
               allowColumnResizing={props.allowColumnResizing}
               rowAlternationEnabled={true}
+              ref={gridRef}
             >
               <MasterDetail
                 enabled={props.showMasterDetail}

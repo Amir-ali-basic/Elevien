@@ -8,16 +8,23 @@ import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
 // import { getAllApplications } from "../services/services.api";
 import { NotifyService } from "../services/NotifyService";
+import React from "react";
+import { getAllApplications, getAllCountries } from "../services/services.api";
+import { CountryModel } from "../models/CountryModel";
+import { countriesList } from "../mocks/countryList";
 
 class CompetitionStore {
   application: ApplicationModel;
   allApplications: ApplicationModel[];
   gridDataSource: DataSource;
+  dataGridRef: React.RefObject<any>;
   gridColumns: GridColumns;
   masterDetails: MasterDetailModel[];
   applicationModalVisibility: boolean;
   haveApiError: boolean;
   notifyService: NotifyService;
+  originalApplications: ApplicationModel[];
+  countriesList: CountryModel[];
 
   constructor() {
     makeAutoObservable(this);
@@ -26,20 +33,23 @@ class CompetitionStore {
       this.gridCancelClickHandler,
       this.gridRequestRemovalClickHandler
     );
+    this.dataGridRef = React.createRef();
     this.application = new ApplicationModel();
     this.gridDataSource = new DataSource({
       store: new CustomStore({
         load: (options: any) => {
           return new Promise((resolve) => {
             resolve({
-              data: dataSourceMock.map((item: any) => item),
-              totalCount: dataSourceMock.length, //need to be fixed
+              data: this.allApplications.map((item: any) => item),
+              totalCount: this.allApplications.length, //need to be fixed
             });
           });
         },
       }),
     });
-    this.allApplications = dataSourceMock.map(
+    this.allApplications = [];
+    this.countriesList = [];
+    this.originalApplications = dataSourceMock.map(
       (item: any) => new ApplicationModel(item)
     );
     this.masterDetails = this.allApplications.map(
@@ -50,13 +60,57 @@ class CompetitionStore {
     this.applicationModalVisibility = false;
     this.haveApiError = false;
     this.notifyService = new NotifyService();
+
+    this.loadData();
+    this.getCountriesList();
     makeAutoObservable(this.application);
   }
 
-  gridCancelClickHandler() {
-    console.log("gridCancelClickHandler");
+  async loadData() {
+    try {
+      // Simulate data loading, replace this with your actual data loading logic
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      this.allApplications = dataSourceMock.map(
+        (item: any) => new ApplicationModel(item)
+      );
+      this.gridDataSource.reload();
+    } catch (error) {
+      // Handle the error
+      console.error("Error loading data:", error);
+    }
   }
 
+  saveGridRef(newGridTemplateRef: any) {
+    // this.dataGridRef = newGridTemplateRef;
+    this.dataGridRef = newGridTemplateRef;
+  }
+
+  gridCancelClickHandler() {
+    getAllApplications().then((res) => {
+      console.log("res", res);
+    });
+  }
+
+  // loadData() {
+  //   getAllApplications().then((res) => {
+  //     this.allApplications = res.map((application: ApplicationModel) => {
+  //       return new ApplicationModel(application);
+  //     });
+  //   });
+  // }
+
+  // getCountriesList() {
+  //   getAllCountries().then((res) => {
+  //     console.log("res", res);
+  //     this.countriesList = res.map((country: CountryModel) => {
+  //       return new CountryModel(country);
+  //     });
+  //   });
+  // }
+
+  getCountriesList() {
+    this.countriesList = countriesList;
+  }
   gridRequestRemovalClickHandler() {
     console.log("gridRequestRemovalClickHandler");
   }

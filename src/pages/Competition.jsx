@@ -10,27 +10,31 @@ import ErrorComponent from "../components/ApiErrorComponent/ErrorComponent";
 import { observer } from "mobx-react";
 
 const Competition = observer(() => {
-  //TODO: modal titile i close(x) treba popraviti
   //TODO: Grid columns treba da pozove button sa stilom
   //TODO: CSS je ocajan - refactoring
   const columns = competitionStore.gridColumns.getDefaultColumns();
-  const dataSource = competitionStore.gridDataSource;
-  const masterGridData = competitionStore.masterDetails;
+
+  //RAZMISLI MALO O OVOME UJUTRO
+  const handleInitialized = (ref) => {
+    competitionStore.saveGridRef(ref);
+  };
 
   return (
     <div>
       <Grid
-        dataSource={dataSource}
+        dataSource={competitionStore.allApplications}
         columns={columns}
         buttonText="New application"
         status="Open"
         showMasterDetail={true}
         masterGridComponent={MasterGrid}
-        masterGridData={masterGridData}
+        masterGridData={competitionStore.masterDetails}
         title="My Applications"
-        filters={Filters}
+        filters={<Filters />}
         addNewAction={() => competitionStore.showApplicationModal()}
         noDataActionButton={() => competitionStore.showApplicationModal()}
+        initialized={handleInitialized}
+        totalCount={competitionStore.allApplications.length}
       ></Grid>
       <ModalDialog
         isVisible={competitionStore.applicationModalVisibility}

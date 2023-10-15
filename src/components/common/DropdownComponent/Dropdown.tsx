@@ -9,7 +9,7 @@ interface DropdownProps {
   showLabel?: boolean;
   value: string;
   items: string[];
-  placeholder: string;
+  placeholder?: string;
   onValueChange: (newValue: string) => void;
 }
 //komponentu treba fixati da moze da radi sa nizom stringova, i da radi sa bilo kojim modelom, u slucaju da dodje
