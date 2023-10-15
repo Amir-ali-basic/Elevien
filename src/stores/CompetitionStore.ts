@@ -6,7 +6,6 @@ import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
-// import { getAllApplications } from "../services/services.api";
 import { NotifyService } from "../services/NotifyService";
 import React from "react";
 import { getAllApplications, getAllCountries } from "../services/services.api";
@@ -37,11 +36,11 @@ class CompetitionStore {
     this.application = new ApplicationModel();
     this.gridDataSource = new DataSource({
       store: new CustomStore({
-        load: (options: any) => {
+        load: () => {
           return new Promise((resolve) => {
             resolve({
               data: this.allApplications.map((item: any) => item),
-              totalCount: this.allApplications.length, //need to be fixed
+              totalCount: this.allApplications.length,
             });
           });
         },
@@ -68,27 +67,22 @@ class CompetitionStore {
 
   async loadData() {
     try {
-      // Simulate data loading, replace this with your actual data loading logic
       await new Promise((resolve) => setTimeout(resolve, 1000));
       this.allApplications = dataSourceMock.map(
         (item: any) => new ApplicationModel(item)
       );
       this.gridDataSource.reload();
     } catch (error) {
-      // Handle the error
       console.error("Error loading data:", error);
     }
   }
 
   saveGridRef(newGridTemplateRef: any) {
-    // this.dataGridRef = newGridTemplateRef;
     this.dataGridRef = newGridTemplateRef;
   }
 
   gridCancelClickHandler() {
-    getAllApplications().then((res) => {
-      console.log("res", res);
-    });
+    console.log("cancel clicked");
   }
 
   // loadData() {

@@ -2,29 +2,35 @@ import React, { useState, useEffect, useCallback } from "react";
 import competitionStore from "../../stores/CompetitionStore";
 import Dropdown from "../common/DropdownComponent/Dropdown";
 import { ApplicationModel } from "../../models/ApplicationModel";
+import searchIcon from "../../assets/images/searchIcon.png";
 
 function Filters() {
   const [searchVal, setSearchVal] = useState("");
   const [programValue, setProgramValue] = useState("");
   const [categoryValue, setCategoryValue] = useState("");
   const [statusValue, setStatusValue] = useState("");
+  const [disciplineValue, setDisciplineValue] = useState("");
 
   const clearFilter = () => {
     setSearchVal("");
     setProgramValue("");
     setCategoryValue("");
     setStatusValue("");
+    setDisciplineValue("");
   };
 
-  const test = ["selectValue", "Obavezni program", "Univerzalni program"];
+  const programsList = ["All", "Obavezni program", "Univerzalni program"];
+  const disciplineList = ["All", "WAG", "TEST"];
+
   const categoriesList = [
+    "All",
     "Djecaci",
     "Djevojčice",
     "Mlađe djevojčice",
     "Starije Djevojcice",
     "Stariji Djecaci",
   ];
-  const status = ["applied", "canceled", "awaiting response"];
+  const status = ["All", "applied", "canceled", "awaiting response"];
 
   // Define filterApplications using useCallback
   const filterApplications = useCallback(
@@ -36,11 +42,12 @@ function Filters() {
             app.lastName.toLowerCase().includes(searchVal.toLowerCase())) &&
           (programValue === "" || app.programName === programValue) &&
           (categoryValue === "" || app.categoryName === categoryValue) &&
-          (statusValue === "" || app.status === statusValue)
+          (statusValue === "" || app.status === statusValue) &&
+          (disciplineValue === "" || app.discipline === disciplineValue)
         );
       });
     },
-    [searchVal, programValue, categoryValue, statusValue]
+    [searchVal, programValue, categoryValue, statusValue, disciplineValue]
   );
 
   useEffect(() => {
@@ -51,29 +58,48 @@ function Filters() {
   }, [searchVal, programValue, categoryValue, statusValue, filterApplications]);
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search"
-        value={searchVal}
-        onChange={(e) => setSearchVal(e.target.value)}
-      />
-      <Dropdown
-        value={test[0]}
-        items={test}
-        onValueChange={(newVal) => setProgramValue(newVal)}
-      />
-      <Dropdown
-        value={categoriesList[0]}
-        items={categoriesList}
-        onValueChange={(newVal) => setCategoryValue(newVal)}
-      />
-      <Dropdown
-        value={status[0]}
-        items={status}
-        onValueChange={(newVal) => setStatusValue(newVal)}
-      />
-      <button>Search</button> <button onClick={clearFilter}>Clear</button>
+    <div className="filters-container">
+      <div className="search-filter">
+        <img src={searchIcon} alt="search icon" className="search-icon" />
+        <input
+          className="searchField"
+          type="text"
+          placeholder="Search"
+          value={searchVal}
+          onChange={(e) => setSearchVal(e.target.value)}
+        />
+      </div>
+      <div className="dropdowns-filters">
+        <Dropdown
+          value={disciplineList[0]}
+          items={disciplineList}
+          isFilter={true}
+          label="Discipline"
+          onValueChange={(newVal) => setDisciplineValue(newVal)}
+        />
+        <Dropdown
+          value={programsList[0]}
+          items={programsList}
+          isFilter={true}
+          label="Program"
+          onValueChange={(newVal) => setProgramValue(newVal)}
+        />
+        <Dropdown
+          value={categoriesList[0]}
+          items={categoriesList}
+          isFilter={true}
+          label="Category"
+          onValueChange={(newVal) => setCategoryValue(newVal)}
+        />
+        <Dropdown
+          value={status[0]}
+          items={status}
+          isFilter={true}
+          label="Status"
+          onValueChange={(newVal) => setStatusValue(newVal)}
+        />
+        <button onClick={clearFilter}>Clear</button>
+      </div>
     </div>
   );
 }
