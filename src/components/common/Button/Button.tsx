@@ -41,7 +41,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       onClick={handleClick}
       disabled={disabled}
     >
-      {text}
+      <span>{text}</span>
     </button>
   );
 };

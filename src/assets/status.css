@@ -11,6 +11,7 @@
   gap: 10px;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .status .status-content .status-icon {
   width: 10px;

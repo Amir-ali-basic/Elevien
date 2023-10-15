@@ -31,7 +31,7 @@ const ApplicationForm = observer(() => {
                 competitionStore.application.firstName
               );
             }}
-            placeholder="First Name"
+            placeholder="Enter Name"
           />
           {formik.errors.firstName ? (
             <span className="validation-error">{formik.errors.firstName}</span>
@@ -51,7 +51,7 @@ const ApplicationForm = observer(() => {
                 competitionStore.application.lastName
               );
             }}
-            placeholder="Last Name"
+            placeholder="Enter last name"
           />
           {formik.errors.lastName ? (
             <span className="validation-error">{formik.errors.lastName}</span>
@@ -81,7 +81,7 @@ const ApplicationForm = observer(() => {
             label="Program and category"
             value={competitionStore.application.categoryName}
             items={CategoriesAndPrograms}
-            placeholder="Program and category"
+            placeholder="Enter program and category"
             onValueChange={(newValue: string) => {
               competitionStore.application.categoryName = newValue;
               formik.setFieldValue(
@@ -127,7 +127,7 @@ const ApplicationForm = observer(() => {
             onValueChange={(newValue: string) => {
               competitionStore.application.club = newValue;
             }}
-            placeholder="Club"
+            placeholder="Enter club name"
           />
         </div>
         <div className="application-form-input">
@@ -140,7 +140,7 @@ const ApplicationForm = observer(() => {
             onValueChange={(newValue: string) => {
               competitionStore.application.teamName = newValue;
             }}
-            placeholder="Team"
+            placeholder="Team name"
           />
         </div>
       </div>

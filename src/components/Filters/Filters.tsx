@@ -12,7 +12,13 @@ function Filters() {
   const [disciplineValue, setDisciplineValue] = useState("");
 
   const programsList = ["All", "Obavezni program", "Univerzalni program"];
-  const disciplineList = ["All", "WAG", "TEST"];
+  const disciplineList = [
+    "All",
+    "WAG",
+    "MAG",
+    "Rhythmic Gymnastics",
+    "Acrobatic Gymnastics",
+  ];
 
   const categoriesList = [
     "All",
@@ -70,7 +76,7 @@ function Filters() {
         <input
           className="searchField"
           type="text"
-          placeholder="Search"
+          placeholder="Search gymnasts"
           value={searchVal}
           onChange={(e) => setSearchVal(e.target.value)}
         />

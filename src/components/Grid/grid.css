@@ -60,3 +60,7 @@
 .dx-row-alt > td {
   background-color: var(--secondary-color);
 }
+
+.gridContainer h3 {
+  margin-top: 27px;
+}
