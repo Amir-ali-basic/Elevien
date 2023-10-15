@@ -64,3 +64,8 @@
 .gridContainer h3 {
   margin-top: 27px;
 }
+.dx-datagrid .dx-datagrid-headers .dx-header-filter,
+.dx-datagrid .dx-datagrid-headers .dx-header-row > td {
+  padding-top: 15px;
+  padding-bottom: 13px;
+}
