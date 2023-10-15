@@ -66,8 +66,8 @@ h4 {
 }
 /*TODO: TREBA SREDITI CONTAINER*/
 .container {
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 body {
   margin: 0;
@@ -90,6 +90,8 @@ body {
   line-height: 14px;
   margin: 0;
   margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text-primary-light);
 }
 
 .error-component {
@@ -158,6 +160,7 @@ button:disabled {
 .dropdowns-filters {
   display: flex;
   justify-items: center;
+  gap: 4px;
 }
 .dropdowns-filters .dropdown-filter {
   max-width: 170px;
@@ -185,4 +188,16 @@ button:disabled {
   position: absolute;
   top: 6px;
   left: 6px;
+}
+
+.dx-dropdowneditor-icon {
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M16.5%2010.2939L15.4425%209.24794L12%2012.6494L8.5575%209.25199L7.5%2010.2992L12%2014.75L16.5%2010.2939Z%22%2F%3E%3C%2Fsvg%3E");
+}
+.dx-dropdowneditor-icon::before {
+  content: none;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M16.5%2010.2939L15.4425%209.24794L12%2012.6494L8.5575%209.25199L7.5%2010.2992L12%2014.75L16.5%2010.2939Z%22%2F%3E%3C%2Fsvg%3E");
 }

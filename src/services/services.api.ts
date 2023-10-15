@@ -58,7 +58,7 @@ export function postApplication(data: ApplicationModel): Promise<any> {
   })
     .then((res) => {
       if (!res.ok) {
-        competitionStore.haveApiError = true;
+        console.log("Response is not OK");
       }
       return res.json();
     })
@@ -69,6 +69,5 @@ export function postApplication(data: ApplicationModel): Promise<any> {
     .catch((error) => {
       console.error("API Error:", error);
       notifyService.showError("API Error: " + error.message);
-      throw error;
     });
 }
