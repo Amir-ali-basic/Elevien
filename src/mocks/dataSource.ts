@@ -95,4 +95,20 @@ export const dataSourceMock = [
     dateOfBirth:
       "Wed Nov 02 2022 05:40:02 GMT+0000 (Coordinated Universal Time)",
   },
+  {
+    id: "9c6ad97e-ea46-45f7-93b9-707a076f426b",
+    firstName: "Dianna",
+    lastName: "Schuppe",
+    country: "HR",
+    phone: "530.481.0789",
+    discipline: "TEST",
+    programName: "Univerzalni program",
+    categoryName: "Djevojčice",
+    teamName: "Serbia Consultant",
+    status: "applied",
+    date: "Mon Oct 09 2023 00:07:48 GMT+0000 (Coordinated Universal Time)",
+    club: "GK Fay - Schulist",
+    dateOfBirth:
+      "Wed Nov 02 2022 05:40:02 GMT+0000 (Coordinated Universal Time)",
+  },
 ];

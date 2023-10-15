@@ -5,7 +5,7 @@ import TextInput from "../common/TextInput/TextInput";
 import "../../assets/form.css";
 import DatePicker from "../common/DatePicker/DatePicker";
 import PhoneNumberInput from "../common/PhoneNumberInput/PhoneNumberInput";
-import { countriesList } from "../../mocks/countryList";
+// import { countriesList } from "../../mocks/countryList";
 import { CategoriesAndPrograms } from "../../mocks/Categories";
 import { observer } from "mobx-react";
 import { FormValidation } from "./FormValidation";
@@ -60,7 +60,7 @@ const ApplicationForm = observer(() => {
         <div className="application-form-country">
           <CountryDropdown
             value={competitionStore.application.country}
-            countries={countriesList}
+            countries={competitionStore.countriesList}
             onValueChange={(newValue: string) => {
               competitionStore.application.country = newValue;
               formik.setFieldValue(
@@ -148,7 +148,7 @@ const ApplicationForm = observer(() => {
         <div className="aplication-form-phone-input">
           <PhoneNumberInput
             label="Phone (Optional)"
-            countries={countriesList}
+            countries={competitionStore.countriesList}
             value={competitionStore.application.phone}
             onValueChange={(newValue) => {
               competitionStore.application.phone = newValue.fullPhoneNumber;

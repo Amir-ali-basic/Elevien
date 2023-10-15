@@ -22,7 +22,6 @@ export class GridColumns {
 
   public getDefaultColumns(): IColumnProps[] {
     this.columns = [
-      //fix all column widths
       {
         caption: "Name",
         dataField: "firstName",

@@ -9,7 +9,8 @@ interface DropdownProps {
   showLabel?: boolean;
   value: string;
   items: string[];
-  placeholder: string;
+  placeholder?: string;
+  isFilter?: boolean;
   onValueChange: (newValue: string) => void;
 }
 //komponentu treba fixati da moze da radi sa nizom stringova, i da radi sa bilo kojim modelom, u slucaju da dodje
@@ -28,7 +29,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
   };
 
   return (
-    <div className="dx-field">
+    <div className={`dx-field ${props.isFilter ? "dropdown-filter" : ""}`}>
       <span className="input-label">{props.label}</span>
       <DxSelectBox
         disabled={props.disabled}
