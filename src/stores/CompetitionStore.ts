@@ -7,8 +7,14 @@ import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
 import { NotifyService } from "../services/NotifyService";
 import React from "react";
-import { getAllApplications, getAllCountries } from "../services/services.api";
+import {
+  getAllApplications,
+  getAllCountries,
+  postApplication,
+} from "../services/services.api";
 import { CountryModel } from "../models/CountryModel";
+import { dataSourceMock } from "../mocks/dataSource"; //koriste se kao mock podaci
+import { countriesList } from "../mocks/countryList"; //koriste se kao mock podaci
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -79,25 +85,46 @@ class CompetitionStore {
     console.log("cancel clicked");
   }
 
-  loadData() {
-    getAllApplications().then((res) => {
-      this.allApplications = res.map((application: ApplicationModel) => {
-        return new ApplicationModel(application);
-      });
-      this.originalApplications = res.map((application: ApplicationModel) => {
-        return new ApplicationModel(application);
-      });
-    });
+  // loadData() {
+  //   getAllApplications().then((res) => {
+  //     this.allApplications = res.map((application: ApplicationModel) => {
+  //       return new ApplicationModel(application);
+  //     });
+  //     this.originalApplications = res.map((application: ApplicationModel) => {
+  //       return new ApplicationModel(application);
+  //     });
+  //   });
+  // }
+
+  async loadData() {
+    try {
+      this.showLoader();
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      this.allApplications = dataSourceMock.map(
+        (item: any) => new ApplicationModel(item)
+      );
+      this.originalApplications = dataSourceMock.map(
+        (item: any) => new ApplicationModel(item)
+      );
+      this.gridDataSource.reload();
+      this.hideLoader();
+    } catch (error) {
+      console.error("Error loading data:", error);
+    }
   }
 
   getCountriesList() {
-    getAllCountries().then((res) => {
-      console.log("res", res);
-      this.countriesList = res.map((country: CountryModel) => {
-        return new CountryModel(country);
-      });
-    });
+    this.countriesList = countriesList;
   }
+
+  // getCountriesList() {
+  //   getAllCountries().then((res) => {
+  //     console.log("res", res);
+  //     this.countriesList = res.map((country: CountryModel) => {
+  //       return new CountryModel(country);
+  //     });
+  //   });
+  // }
 
   gridRequestRemovalClickHandler() {
     console.log("gridRequestRemovalClickHandler");
@@ -120,22 +147,6 @@ class CompetitionStore {
     this.hideApplicationModal();
   }
 
-  sendApplication() {
-    validationSchema.isValid(this.application).then((res: any) => {
-      if (res === false) {
-        this.notifyService.showError("Please fill al field");
-        return;
-      }
-      this.notifyService.showSuccess("Your data is sent");
-      console.log(
-        "post model",
-        this.application.toCreateCommand(this.application)
-      );
-      this.resetApplicationModel();
-      this.hideApplicationModal();
-    });
-  }
-
   formSubmit() {
     validationSchema
       .validate(this.application, { abortEarly: false })
@@ -145,6 +156,7 @@ class CompetitionStore {
           this.notifyService.showSuccess(
             "Your data has been successfully submitted."
           );
+          postApplication(this.application.toCreateCommand(this.application));
           console.log(
             "post model",
             this.application.toCreateCommand(this.application)
