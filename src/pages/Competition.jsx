@@ -24,6 +24,7 @@ const Competition = observer(() => {
     <div>
       <Grid
         dataSource={competitionStore.allApplications}
+        totalCount={competitionStore.allApplications.length}
         columns={columns}
         buttonText="New application"
         status="Open"
@@ -35,14 +36,13 @@ const Competition = observer(() => {
         addNewAction={() => competitionStore.showApplicationModal()}
         noDataActionButton={() => competitionStore.showApplicationModal()}
         initialized={handleInitialized}
-        totalCount={competitionStore.allApplications.length}
       ></Grid>
       <ModalDialog
         isVisible={competitionStore.applicationModalVisibility}
-        title="Your Modal Title"
+        title="Apply gymnast"
         showTitle={true}
         abortButtonText="Cancel"
-        confirmButtonText="Confirm"
+        confirmButtonText="Save"
         abort={() => competitionStore.abortButtonHandler()}
         confirm={() => competitionStore.formSubmit()}
       >
