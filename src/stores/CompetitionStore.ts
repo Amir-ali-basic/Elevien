@@ -2,7 +2,6 @@ import { makeAutoObservable } from "mobx";
 import { GridColumns } from "../pages/GridColumns";
 import DataSource from "devextreme/data/data_source";
 import CustomStore from "devextreme/data/custom_store";
-import { dataSourceMock } from "../mocks/dataSource";
 import { ApplicationModel } from "../models/ApplicationModel";
 import { MasterDetailModel } from "../models/MaterDetailModel";
 import { validationSchema } from "../components/ApplicationForm/FormValidation";
@@ -10,7 +9,6 @@ import { NotifyService } from "../services/NotifyService";
 import React from "react";
 import { getAllApplications, getAllCountries } from "../services/services.api";
 import { CountryModel } from "../models/CountryModel";
-import { countriesList } from "../mocks/countryList";
 
 class CompetitionStore {
   application: ApplicationModel;
@@ -49,9 +47,7 @@ class CompetitionStore {
     });
     this.allApplications = [];
     this.countriesList = [];
-    this.originalApplications = dataSourceMock.map(
-      (item: any) => new ApplicationModel(item)
-    );
+    this.originalApplications = [];
     this.masterDetails = this.allApplications.map(
       (application: ApplicationModel) => {
         return new MasterDetailModel(application);
@@ -75,20 +71,6 @@ class CompetitionStore {
     this.globalLoader = false;
   }
 
-  async loadData() {
-    try {
-      this.showLoader();
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      this.allApplications = dataSourceMock.map(
-        (item: any) => new ApplicationModel(item)
-      );
-      this.gridDataSource.reload();
-      this.hideLoader();
-    } catch (error) {
-      console.error("Error loading data:", error);
-    }
-  }
-
   saveGridRef(newGridTemplateRef: any) {
     this.dataGridRef = newGridTemplateRef;
   }
@@ -97,26 +79,26 @@ class CompetitionStore {
     console.log("cancel clicked");
   }
 
-  // loadData() {
-  //   getAllApplications().then((res) => {
-  //     this.allApplications = res.map((application: ApplicationModel) => {
-  //       return new ApplicationModel(application);
-  //     });
-  //   });
-  // }
-
-  // getCountriesList() {
-  //   getAllCountries().then((res) => {
-  //     console.log("res", res);
-  //     this.countriesList = res.map((country: CountryModel) => {
-  //       return new CountryModel(country);
-  //     });
-  //   });
-  // }
+  loadData() {
+    getAllApplications().then((res) => {
+      this.allApplications = res.map((application: ApplicationModel) => {
+        return new ApplicationModel(application);
+      });
+      this.originalApplications = res.map((application: ApplicationModel) => {
+        return new ApplicationModel(application);
+      });
+    });
+  }
 
   getCountriesList() {
-    this.countriesList = countriesList;
+    getAllCountries().then((res) => {
+      console.log("res", res);
+      this.countriesList = res.map((country: CountryModel) => {
+        return new CountryModel(country);
+      });
+    });
   }
+
   gridRequestRemovalClickHandler() {
     console.log("gridRequestRemovalClickHandler");
   }

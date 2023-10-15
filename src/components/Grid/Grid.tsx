@@ -1,4 +1,4 @@
-import React, { Ref, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import DataGrid, { MasterDetail } from "devextreme-react/data-grid";
 import "./grid.css";
 import CustomButton from "../common/Button/Button";
