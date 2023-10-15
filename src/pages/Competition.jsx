@@ -7,6 +7,7 @@ import competitionStore from "../stores/CompetitionStore";
 import ModalDialog from "../components/common/ModalDialog/ModalDialog";
 import ApplicationForm from "../components/ApplicationForm/ApplicationForm";
 import ErrorComponent from "../components/ApiErrorComponent/ErrorComponent";
+import { LoadPanel } from "devextreme-react/load-panel";
 import { observer } from "mobx-react";
 
 const Competition = observer(() => {
@@ -48,6 +49,10 @@ const Competition = observer(() => {
         <ApplicationForm />
       </ModalDialog>
       <ErrorComponent isVisible={competitionStore.haveApiError} />
+      <LoadPanel
+        visible={competitionStore.globalLoader}
+        shadingColor="rgba(0,0,0,0.4)"
+      />
     </div>
   );
 });

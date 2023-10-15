@@ -24,6 +24,7 @@ class CompetitionStore {
   notifyService: NotifyService;
   originalApplications: ApplicationModel[];
   countriesList: CountryModel[];
+  globalLoader: boolean;
 
   constructor() {
     makeAutoObservable(this);
@@ -59,19 +60,30 @@ class CompetitionStore {
     this.applicationModalVisibility = false;
     this.haveApiError = false;
     this.notifyService = new NotifyService();
+    this.globalLoader = false;
 
     this.loadData();
     this.getCountriesList();
     makeAutoObservable(this.application);
   }
 
+  showLoader() {
+    this.globalLoader = true;
+  }
+
+  hideLoader() {
+    this.globalLoader = false;
+  }
+
   async loadData() {
     try {
+      this.showLoader();
       await new Promise((resolve) => setTimeout(resolve, 1000));
       this.allApplications = dataSourceMock.map(
         (item: any) => new ApplicationModel(item)
       );
       this.gridDataSource.reload();
+      this.hideLoader();
     } catch (error) {
       console.error("Error loading data:", error);
     }
