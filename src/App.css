@@ -124,6 +124,12 @@ button:disabled {
   .master-grid-content {
     margin-left: 0 !important;
   }
+  .filters-container {
+    flex-direction: column;
+  }
+  .search-filter {
+    width: 100%;
+  }
 }
 
 .grid-container {
@@ -154,7 +160,7 @@ button:disabled {
   justify-items: center;
 }
 .dropdowns-filters .dropdown-filter {
-  width: 170px;
+  max-width: 170px;
 }
 
 .dropdowns-filters > .dx-field {

@@ -11,14 +11,6 @@ function Filters() {
   const [statusValue, setStatusValue] = useState("");
   const [disciplineValue, setDisciplineValue] = useState("");
 
-  const clearFilter = () => {
-    setSearchVal("");
-    setProgramValue("");
-    setCategoryValue("");
-    setStatusValue("");
-    setDisciplineValue("");
-  };
-
   const programsList = ["All", "Obavezni program", "Univerzalni program"];
   const disciplineList = ["All", "WAG", "TEST"];
 
@@ -51,11 +43,25 @@ function Filters() {
   );
 
   useEffect(() => {
-    // Apply filters to competitionStore.allApplications
     competitionStore.allApplications = filterApplications(
       competitionStore.originalApplications
     );
   }, [searchVal, programValue, categoryValue, statusValue, filterApplications]);
+
+  useEffect(() => {
+    if (disciplineValue === "All") {
+      setDisciplineValue("");
+    }
+    if (programValue === "All") {
+      setProgramValue("");
+    }
+    if (categoryValue === "All") {
+      setCategoryValue("");
+    }
+    if (statusValue === "All") {
+      setStatusValue("");
+    }
+  }, [disciplineValue, programValue, categoryValue, statusValue]);
 
   return (
     <div className="filters-container">
@@ -98,7 +104,6 @@ function Filters() {
           label="Status"
           onValueChange={(newVal) => setStatusValue(newVal)}
         />
-        <button onClick={clearFilter}>Clear</button>
       </div>
     </div>
   );
