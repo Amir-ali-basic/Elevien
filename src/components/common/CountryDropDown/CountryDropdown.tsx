@@ -24,7 +24,7 @@ const CountryDropdown: React.FC<CountryDropdownProps> = (props) => {
   const itemTemplate = (data: CountryModel) => (
     <div className="custom-country-item">
       <img
-        src={`https://www.countryflagicons.com/FLAT/64/${data.code}.png`}
+        src={`https://flagsapi.com/${data.code}/flat/64.png`}
         height="24px"
         width="24px"
         alt={data.name}
